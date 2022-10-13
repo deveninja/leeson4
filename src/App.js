@@ -1,57 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerAsync } from './features/auth/authActions';
+import { sayHello } from './features/auth/authSlice';
+import Guard from './Guard';
 
 function App() {
+  const {isFetching, isSuccess, isError, user, message} = useSelector(state => state.auth)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    (
+      async () => {
+        // await dispatch(registerAsync({}));
+        // await dispatch(sayHello('Chammy'));
+      }
+    )()
+  }, [])
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+      <Guard auth={message}>
+        <h1>Mark</h1>
+        <h1>Elmer</h1>
+        <h1>Ronnie</h1>
+        <h1>Jlord</h1>
+        <h1>Chammy</h1>
+        <h1>Ice</h1>
+      </Guard>
+
+      <div className="App">
+
+      </div>
+    </>
   );
 }
 
